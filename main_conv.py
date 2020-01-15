@@ -34,7 +34,7 @@ import tensorflow as tf
 
 flags = tf.app.flags
 flags.DEFINE_string("architecture", "conv", "semi-conv (conv) or fully connected (fc)")
-flags.DEFINE_integer("num_iter", 30000, "Epoch to train [50]")
+flags.DEFINE_integer("num_iter", 3000, "Epoch to train [50]")
 flags.DEFINE_float("learning_rate", 1e-4, "Learning rate for adam [1e-4]")
 flags.DEFINE_float("beta1", 0., "Momentum term of adam [0.]")
 flags.DEFINE_float("beta2", 0.9, "Momentum term of adam [0.9]")
@@ -174,7 +174,8 @@ def main(_):
         index = np.arange(FLAGS.num_neurons)
     else:
         index = np.argsort(original_dataset['shuffled_index'])
-        
+        print((original_dataset['shuffled_index']))
+
     if FLAGS.architecture=='conv':
         print('get filters -----------------------------------')
         filters = wgan.get_filters(num_samples=64)
